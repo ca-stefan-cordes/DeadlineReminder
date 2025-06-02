@@ -47,7 +47,8 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<!-- https://maven.apache.org/plugins/maven-compiler-plugin/ -->
+				<version>3.14.0</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -56,10 +57,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
+				<!-- https://maven.apache.org/plugins/maven-assembly-plugin/plugin-info.html -->
+				<version>3.7.1</version>
 				<executions>
 					<execution>
 						<goals>
-							<goal>attached</goal>
+							<goal>single</goal>
 						</goals>
 						<phase>package</phase>
 						<configuration>

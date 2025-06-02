@@ -106,7 +106,8 @@ public final class LocalServerReceiver implements VerificationCodeReceiver {
 	class CallbackHandler extends AbstractHandler {
 
 		@Override
-		public void handle(String target, HttpServletRequest request, HttpServletResponse response, int dispatch) throws IOException {
+		public void handle(String target, HttpServletRequest request, HttpServletResponse response, int dispatch)
+				throws IOException {
 			LOGGER.info("handle:" + target);
 			if (!CALLBACK_PATH.equals(target)) {
 				return;

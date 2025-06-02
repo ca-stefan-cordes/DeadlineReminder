@@ -21,12 +21,12 @@ package de.quaddy_services.deadlinereminder.extern;
  */
 public interface VerificationCodeReceiver {
 
-  /** Returns the redirect URI. */
-  String getRedirectUri() throws Exception;
+	/** Returns the redirect URI. */
+	String getRedirectUri() throws Exception;
 
-  /** Waits for a verification code. */
-  String waitForCode();
+	/** Waits for a verification code. */
+	String waitForCode();
 
-  /** Releases any resources and stops any processes started. */
-  void stop() throws Exception;
+	/** Releases any resources and stops any processes started. */
+	void stop() throws Exception;
 }
