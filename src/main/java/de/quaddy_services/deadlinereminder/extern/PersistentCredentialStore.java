@@ -65,7 +65,8 @@ public class PersistentCredentialStore implements CredentialStore {
 	private File getStoreFile(String aUserId) {
 		File tempDir = new File(System.getProperty("user.home", ".") + "/DeadlineReminder");
 		tempDir.mkdirs();
-		return new File(tempDir.getAbsolutePath() + "/" + PersistentCredentialInfo.class.getName() + "-" + aUserId + ".info");
+		return new File(
+				tempDir.getAbsolutePath() + "/" + PersistentCredentialInfo.class.getName() + "-" + aUserId + ".info");
 	}
 
 }

@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class PersistentCredentialInfo implements Serializable {
-	  /** Access token issued by the authorization server. */
-	  private String accessToken;
+	/** Access token issued by the authorization server. */
+	private String accessToken;
 	private Long expirationTimeMilliseconds;
 	private String refreshToken;
 
@@ -19,12 +19,12 @@ public class PersistentCredentialInfo implements Serializable {
 
 	public void setExpirationTimeMilliseconds(Long aExpirationTimeMilliseconds) {
 		expirationTimeMilliseconds = aExpirationTimeMilliseconds;
-		
+
 	}
 
 	public void setRefreshToken(String aRefreshToken) {
-		refreshToken=aRefreshToken;
-		
+		refreshToken = aRefreshToken;
+
 	}
 
 	public Long getExpirationTimeMilliseconds() {
@@ -44,6 +44,6 @@ public class PersistentCredentialInfo implements Serializable {
 			tempDate = null;
 		}
 		return "PersistentCredentialInfo [accessToken=" + accessToken + ", expirationTimeMilliseconds="
-				+ expirationTimeMilliseconds + "="+tempDate+", refreshToken=" + refreshToken + "]";
+				+ expirationTimeMilliseconds + "=" + tempDate + ", refreshToken=" + refreshToken + "]";
 	}
 }
