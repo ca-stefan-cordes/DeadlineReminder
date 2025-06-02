@@ -382,7 +382,8 @@ public class GoogleSync {
 				LOGGER.debug("Do not add self generated files " + tempSummary);
 				// e.g. when restarting deadline-reminder (tempLastSyncStarted == null)
 				// or when suspended more than one day
-			} else if (isManuallyCreatedEntry(tempLastSyncStarted, tempCurrentGoogleEvent,tempManuallyAddedByGoogleIds)) {
+			} else if (isManuallyCreatedEntry(tempLastSyncStarted, tempCurrentGoogleEvent,
+					tempManuallyAddedByGoogleIds)) {
 				logInfo("Looks like it is a manual created event in Google=" + tempStart + " " + tempSummary);
 				Deadline tempDeadline = createDeadlineFromGoogleEvent(tempCurrentGoogleEvent);
 				if (tempDeadline.isWholeDayEvent()) {
@@ -578,9 +579,11 @@ public class GoogleSync {
 		return tempSummary;
 	}
 
-	private boolean isManuallyCreatedEntry(DateTime aLastSyncStarted, Event aEvent, Map<String,Deadline> aManuallyAddedByGoogleIds) {
+	private boolean isManuallyCreatedEntry(DateTime aLastSyncStarted, Event aEvent,
+			Map<String, Deadline> aManuallyAddedByGoogleIds) {
 		if (aManuallyAddedByGoogleIds.containsKey(aEvent.getId())) {
-			// read by de.quaddy_services.deadlinereminder.file.FileStorage.TERMIN_GOOGLE_ADDED_TXT
+			// read by
+			// de.quaddy_services.deadlinereminder.file.FileStorage.TERMIN_GOOGLE_ADDED_TXT
 			return true;
 		}
 		ExtendedProperties tempExtendedProperties = aEvent.getExtendedProperties();
@@ -606,13 +609,15 @@ public class GoogleSync {
 		// Give Google some time to sync the global persistence stores
 		long tempLastSyncStartedMsCompare = tempLastSyncStartedMs - 30000;
 		if (tempLastSyncStartedMsCompare < tempCreatedMs) {
-			logInfo("Event "+tempSummary+" Created " + new Date(tempCreatedMs) + " after " + new Date(tempLastSyncStartedMsCompare));
+			logInfo("Event " + tempSummary + " Created " + new Date(tempCreatedMs) + " after "
+					+ new Date(tempLastSyncStartedMsCompare));
 			return true;
 		}
 		DateTime tempUpdated = aEvent.getUpdated();
 		long tempUpdatedMs = tempUpdated.getValue();
 		if (tempLastSyncStartedMsCompare < tempUpdatedMs) {
-			logInfo("Event "+tempSummary+" Updated " + new Date(tempUpdatedMs) + " after " + new Date(tempLastSyncStartedMsCompare));
+			logInfo("Event " + tempSummary + " Updated " + new Date(tempUpdatedMs) + " after "
+					+ new Date(tempLastSyncStartedMsCompare));
 			return true;
 		}
 		return false;
