@@ -190,4 +190,11 @@ public class OAuth2Native {
 
 	private OAuth2Native() {
 	}
+
+	/**
+	 * 
+	 */
+	public static void clearCache() {
+		clientSecrets = null;
+	}
 }

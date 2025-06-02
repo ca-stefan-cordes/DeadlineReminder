@@ -111,6 +111,7 @@ public class GoogleSync {
 						PersistentCredentialStore tempPersistentCredentialStore = new PersistentCredentialStore();
 						tempPersistentCredentialStore.delete(tempUserName);
 					}
+					OAuth2Native.clearCache();
 				} finally {
 					t = null;
 				}
@@ -200,7 +201,17 @@ public class GoogleSync {
 				HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("DeadlineReminder/1.0")
 				.setHttpRequestInitializer(credential).build();
 
-		return push(client, aOpenDeadlines, aDoneSelectionListener);
+		try {
+			return push(client, aOpenDeadlines, aDoneSelectionListener);
+		} catch (com.google.api.client.auth.oauth2.TokenResponseException e) {
+			logError("OAuth error", e);
+			logInfo("Next time request new authentication token.");
+			String tempUserName = System.getProperty("user.name", "-");
+			PersistentCredentialStore tempPersistentCredentialStore = new PersistentCredentialStore();
+			tempPersistentCredentialStore.delete(tempUserName);
+			OAuth2Native.clearCache();
+			throw e;
+		}
 	}
 
 	/**
